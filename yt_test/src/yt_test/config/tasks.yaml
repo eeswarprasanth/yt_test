@@ -1,0 +1,13 @@
+transcript_task:
+  description: >
+    Extract captions from the provided YouTube video URL. {video_url}
+  expected_output: >
+    A full transcript of the video captions. {video_url}
+  agent: transcript
+
+summarize_task:
+  description: >
+    Summarize the transcript of captions into a concise format.
+  expected_output: >
+    A medium length narrative summary of the video's content. 
+  agent: summarize
