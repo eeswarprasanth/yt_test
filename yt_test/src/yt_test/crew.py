@@ -7,30 +7,6 @@ from crewai_tools import TXTSearchTool
 
 load_dotenv()
 
-# tool=TXTSearchTool(
-# 	txt="transcript.txt",
-# 	config=dict(
-#         llm=dict(
-#             provider="google", # or google, openai, anthropic, llama2, ...
-#             config=dict(
-#                 model="gemini-1.5-flash",
-#                 # temperature=0.5,
-#                 # top_p=1,
-#                 # stream=true,
-#             ),
-#         )
-#     ),
-# 	embedder=dict(
-#             provider="google", # or openai, ollama, ...
-#             config=dict(
-#                 model="models/embedding-001",
-#                 task_type="retrieval_document",
-#                 # title="Embeddings",
-#             ),
-#         ),
-#     )
-
-
 
 # If you want to run a snippet of code before or after the crew starts, 
 # you can use the @before_kickoff and @after_kickoff decorators
@@ -80,6 +56,7 @@ class YtTest():
 	def summarize_task(self) -> Task:
 		return Task(
 			config=self.tasks_config['summarize_task'],
+			output_file='summary.txt'
 		)
 
 	@agent
@@ -94,6 +71,7 @@ class YtTest():
 	def qa_task(self) -> Task:
 		return Task(
 			config=self.tasks_config['qa_task'],
+			output_file='answer.txt',
 			# tools=[tool]
 		)
 
