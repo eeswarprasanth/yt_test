@@ -11,3 +11,10 @@ summarize_task:
   expected_output: >
     A medium length narrative summary of the video's content. 
   agent: summarize
+
+qa_task:
+  description: >
+        Answer the customer's questions based on the text file. Your final answer MUST be clear and accurate, based on the content. {question}
+  expected_output: >
+    Provide clear and accurate answers to the users questions based on the content of the text file. {question}
+  agent: qa_agent

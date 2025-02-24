@@ -16,7 +16,8 @@ def run():
     Run the crew.
     """
     inputs = {
-        'video_url': 'https://youtu.be/zTbgNC42Ops?si=J-J3-0M8qX8lsQNt'
+        'video_url': input("Enter the video URL: "),
+        'question': input("Enter your question: ")
     }
     YtTest().crew().kickoff(inputs=inputs)
 

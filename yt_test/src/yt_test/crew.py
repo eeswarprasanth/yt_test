@@ -1,11 +1,36 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
+from crewai import LLM
 from dotenv import load_dotenv
 from tools.custom_tool import youtube_transcript_extractor
-
-
+from crewai_tools import TXTSearchTool
 
 load_dotenv()
+
+# tool=TXTSearchTool(
+# 	txt="transcript.txt",
+# 	config=dict(
+#         llm=dict(
+#             provider="google", # or google, openai, anthropic, llama2, ...
+#             config=dict(
+#                 model="gemini-1.5-flash",
+#                 # temperature=0.5,
+#                 # top_p=1,
+#                 # stream=true,
+#             ),
+#         )
+#     ),
+# 	embedder=dict(
+#             provider="google", # or openai, ollama, ...
+#             config=dict(
+#                 model="models/embedding-001",
+#                 task_type="retrieval_document",
+#                 # title="Embeddings",
+#             ),
+#         ),
+#     )
+
+
 
 # If you want to run a snippet of code before or after the crew starts, 
 # you can use the @before_kickoff and @after_kickoff decorators
@@ -28,6 +53,7 @@ class YtTest():
 		return Agent(
 			config=self.agents_config['transcript'],
 			verbose=True,
+			memory=True,
 			tools=[youtube_transcript_extractor]
 		)
 
@@ -37,6 +63,7 @@ class YtTest():
 			config=self.agents_config['summarize'],
 			verbose=True
 		)
+	
 
 	# To learn more about structured task outputs, 
 	# task dependencies, and task callbacks, check out the documentation:
@@ -45,13 +72,29 @@ class YtTest():
 	def transcript_task(self) -> Task:
 		return Task(
 			config=self.tasks_config['transcript_task'],
+			output_file='transcript.txt'
+
 		)
 
 	@task
 	def summarize_task(self) -> Task:
 		return Task(
 			config=self.tasks_config['summarize_task'],
-			output_file='report.md'
+		)
+
+	@agent
+	def qa_agent(self) -> Agent:
+		return Agent(
+			config=self.agents_config['qa_agent'],
+			verbose=True,
+			# tools=[tool]
+		)
+
+	@task
+	def qa_task(self) -> Task:
+		return Task(
+			config=self.tasks_config['qa_task'],
+			# tools=[tool]
 		)
 
 	@crew

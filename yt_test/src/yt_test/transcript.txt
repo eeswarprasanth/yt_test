@@ -1,0 +1,349 @@
+so we have another member in the YOLO
+family YOLO 11 so this is released by
+allytics we have the YOLO V8 model and
+also the new YOLO 11 in this video here
+we're going to see how we can take a
+custom data set train the new YOLO 11
+model and also how we can run inference
+we only need a few steps first of all
+let's just jump straight into it and
+take a look at the new model then we can
+label our data set and then train our
+custom YOLO 11 model so first of all
+here let's just start inside the GitHub
+repository where we can go and see the
+benchmarks so the comparisons with all
+the other versions in the YOLO model I'm
+going to keep this video short so we can
+just jump in take the data set train our
+model run inference and we should be
+good to go you can do all of this within
+5 10 minutes on your own side as well so
+if you just take a look at the Benchmark
+results we can see this is a new
+state-of-the-art model it runs faster
+compared to all the other YOLO models
+and also has better accuracy at least on
+the Coco data set but again just because
+we have a new YOLO 11 model doesn't mean
+that the other models can't be better on
+your own data set so definitely test out
+all the different variations or probably
+like y v 5 Yol V 8 and 11 because again
+there might be some differences some of
+the models they can run faster depending
+on the hardware but also the accuracy on
+your own data set so don't just blindly
+trust these benchmarks because again
+this is on a benchmark Coco data set I
+feel after testing out this model I feel
+it's a bit of a mix between Yol E8 and
+also Yol V 10 so we get the speed from
+Yol V 10 you also get some false
+predictions here and there which we're
+getting with Yol V 10 but not as many it
+runs as fast as Yol V 10 but it doesn't
+have the exact same accuracy at least on
+the custom data set that I have tested
+out with the YOLO V8 model so I feel
+it's a bit in between YOLO V8 and YOLO
+V10 so let's not just jump straight into
+our Google collab notebook let's go and
+take a look at it we can just connect to
+the runtime you can use this it has free
+dpu resources available you can just go
+up to the runtime change the runtime
+type and you can choose the the specific
+dpu that you want to use so I think it's
+the T4 on the free version of collab so
+I'm just going to connect here with my
+800 on Google C app the only thing that
+we need to do is PIP install Al litics
+make sure that you're updating it to the
+latest version so if you have it on your
+local you can just pip install upgrade
+and they will download the latest
+version so if you're running into errors
+make sure that it's just updated that
+might be the reason so now we're
+connected let's just go in and P install
+it here we'll have our data set and then
+after that we can just run a single
+command and we're going to train our own
+custom Yol 11 model so let's now going
+inside Robo flow I have a data set here
+where I'm basically just annotating
+these helmets so if people are wearing
+helmets or not so this is for um
+protection equipment so let's just go
+through a couple examples I've already
+labeled out the data set have tons of
+videos on the channel already how we can
+label set up the whole Pipeline and so
+on and go over this tool but also some
+other annotation platforms so we have
+all these images in our data set I've
+generated a version so we can just see
+we have this RW then we can go in
+download our data set up here we have 70
+images in our training set 20 images in
+our validation set and 10 images in our
+test set then we can choose export
+format so let's go with yolo 11 for now
+show downloadable code going to KCK that
+off continue it's going to save the
+folder and now we actually just get this
+code snippet we can copy it and paste it
+directly into our Google cab notebook so
+this is everything that we need to be
+able to train our own custom models so
+we have downloaded it now we can just
+run this P install Robo flow we should
+be good to go we're then downloading our
+data set and we can just run this single
+train command we can then export take a
+look at the results from allytics we can
+see all the epoch for EPO mean error
+Precision Precision recall and all of
+that so now we have our data set let's
+go over into our folders we have our
+hotthead sample we have our test train
+and validation and then we also have our
+data yl file so inside the DAT file is
+just going to specify the name that we
+have in the number of classes so we have
+hit helmet person and we specify the
+directory for a train validation and
+test set so that's pretty much it we
+just have these folders this is the
+structure that Al is chosing to train
+all their YOLO models so this is just
+what format you need also if you have
+your own local data set or using another
+annotation platform so we have our
+images we have our labels train test so
+this is pretty much just folders with
+all the labels and also all the images
+so inside our label file we have our
+object class to start with and then we
+have four values for a bounding box so
+that's a bounding box point but also the
+width and height of it so that's pretty
+much everything that we need for the
+yellow format we can then just go down
+and call this command I'm just going to
+close this we have detect train and then
+we have data we just specify the data yl
+file path we specify which of the models
+we want to use so right now we want to
+go with 11 so this is how easy you can
+just swap out the models if you want to
+test out other models just YOLO V8 now
+it's only called YOLO 11 we have the
+small medium Nano large extra large
+versions as well let's just go for 30
+EPO and we can specify the image size
+they also have all the other high
+parameters that you can specify just
+check out the AL ltic documentation
+so Yol V 11 we're good to go we can just
+hit go and they will start training this
+custom model so first of all it's going
+to download the weights automatically
+check your data set if it's in the
+correct format and so on set up all the
+high parameters go in and do some data
+augmentation and so on set up the
+optimizer and it will start the training
+again if you want to dive more into
+details about any of these stuff
+definitely goad and check out my other
+videos I have like whole tutorials
+covering like the basics of deep
+learning optic texing computer vision
+and so on so now we can see that this
+training has started epoch for EPO it's
+going to go very fast because we only
+have 100 images and I'm running this on
+an 800 GPU from Nvidia so we should be
+able to see our mean positions go up
+here over time the losses they should
+decrease let's just go down and take a
+look at it now we have already completed
+15 Epoch so if you just have a couple of
+hundred images you can train your models
+within like 10 15 minutes you can test
+out the different variations model sizes
+and so on and basically just do some
+modifications so this is how easy it is
+to use if you're using allytics like you
+can just just test out models like
+within an hour you can probably figure
+out what is the best model for your
+specific data set so we can see that the
+meaners positions it's not really the
+perfect model it could be because of the
+data set as well or the number of epoch
+but we can see we started around. 3 here
+in the mean erors position and then once
+we go up we end up here at around 63 so
+we could definitely train it for longer
+we can also go in and see the Precision
+the Precision is pretty good but the
+recall is not that good or pretty much
+bad that basically just means that we're
+missing predictions we get the
+predictions with our Precision but our
+recall we miss a lot of predictions
+which we should act like have predicted
+after that it's going to do the
+valuation on our validation set and then
+we can go and see for each individual
+class how many images instances what is
+the position recall so we can see that
+the helmet it has problems with
+detecting Helmet or that is like like
+the best one person it has problems with
+that could be because of the annotations
+as well but in general this is a OKAY
+model we could probably use it but we
+definitely to chain it for longer now we
+can go over in our runs directory detect
+and then we should be able to see our
+train and we have our train two we have
+our weights here you can just go and
+download that if you want to run
+inference I'm going to download the best
+weights so we can see how to run
+inference as well you can just download
+it use the exact same code as I have in
+the Google cab notebook here and
+basically just throw it into your own
+local machine here we get all different
+graphs so I normally take a look at the
+results. PNG where we can see all these
+metrics the curves the training curves
+over time and we can see that our model
+hasn't converged at all so we definitely
+need to train it for longer the losses
+they're decreasing nicely so it just
+needs more training we also to get
+labels we get some validation badges so
+let's go to take a look at validation so
+this is basically just images that the
+model has never seen before and again
+these are some very hard use cases as
+well because again there is so many
+different variations in the data set so
+many different examples like different
+humans different environments and so on
+but it already does a pretty good job at
+least with the helmets as we also saw in
+here for validation then you can also go
+and take a look at the Precision recall
+curve ideally we should have it up here
+at the top so it should be one one so
+basically just have one in precision and
+also one in recall we get all
+predictions we don't miss any
+predictions so our model is pretty much
+perfect so now that we have our model
+let's jump inside the ult ltic
+documentation and we should be able to
+just pull the code for running inference
+I'm just going to show you the
+documentation so you can see how to
+navigate it but it's basically just
+calling the predict command you can both
+do it in Python but also directly from
+the terminal so if you just go inside
+our predict we can then see we have we
+have tons of videos covering here I'm
+doing the videos for allytics working
+closely together with them to create
+some cool content and also videos
+covering all the documentation so in
+here you can see how to run predictions
+with all the different tasks so if
+you're just running optic section we can
+load in the model so this is the best.
+PT model that we just downloaded we
+throw our images through our model you
+can take any like could be video stream
+Ser index for webcam rtps stream list
+here of images as well everything you
+can just throw it into the model you
+will get the results out and this is how
+you extract the bounding boxes mask key
+points and so on depending on what type
+of task you're doing in this example
+we're just doing object detection so
+let's go and take a look at that if we
+want to run detections either we can use
+Python so this is only a few lines of
+code or we can use the command line
+right now we just use the command line
+to train it so let's now use the python
+code and you can do the exact same thing
+on your side so right now we can delete
+all of this and we just need to take the
+path for our best. PT I copy the path
+throw it in here and we don't want to
+run train so I took the wrong example so
+here we can run prediction but it will
+be basically be the exact same thing is
+just throwing the image through our
+model let's go back here
+again we run predict delete this part
+and again either you can just use the
+boss example here that they have but
+let's go and take a look at some of our
+test images grab that one just take an
+arbitrary we copy the path to that and
+there we go we should be able to see our
+results and we can even go in here and
+just call save that set equal to true
+and it will save the image you can also
+specify show if you want to show it but
+you can't do that in a Google collab
+notebook so we're running it here now we
+take our image throw it through the
+model and we will get the results out so
+we can see here pre-processing 7 7
+milliseconds pre-processing 60
+milliseconds inference and also
+postprocessing and then we can see we
+detect one helmet in 61 millisecond all
+the results are saved within runs detect
+and then we have our predict folder so
+let's go inside that one predict and
+this is the results that we get out when
+we have like have our model so we can
+see that we're detecting one helmet
+which is correct so this is the whole
+pipeline that you need to set up to
+train your own custom computer vision
+models with the new YOLO 11 model we
+took a look at the results The Benchmark
+make sure that you test out various
+models because it could be depending on
+your data set or it is then we took a
+data set with roboff flow you can just
+go in and annotate it exported it into a
+Google call notebook train it in a few
+minutes we're good to go we can now run
+inference with it download the model use
+it in our own applications and projects
+so hope you learned ton of this video
+here if you want to learn more about
+computer vision all my course and so on
+I even have my community the AI career
+program if you want to get into
+freelance work level up your career how
+to land AI machine learning jobs I also
+have the a career program you can check
+it out on our website everything is down
+description and so on and then I just
+hope to see you guys in one of the
+upcoming videos until then Happy
+training
